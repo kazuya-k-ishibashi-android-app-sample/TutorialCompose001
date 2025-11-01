@@ -24,9 +24,13 @@ class MainActivity : ComponentActivity() {
             Text(
                 "Hello Android!",
                 color = Color.Red,
+                // Modifierは、順序や重ねがけの影響を受ける
                 modifier = Modifier
-                    .background(Color.LightGray)
                     .padding(horizontal = 16.dp, vertical = 32.dp)
+                    .background(Color.LightGray)
+                    .padding(8.dp)
+                    .background(Color.White)
+                    .padding(8.dp)
             )
         }
     }
