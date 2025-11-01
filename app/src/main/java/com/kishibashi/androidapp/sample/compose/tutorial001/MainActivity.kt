@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
@@ -21,17 +23,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            Text(
-                "Hello Android!",
-                color = Color.Red,
-                // Modifierは、順序や重ねがけの影響を受ける
+
+            // Standard layout components（標準レイアウトコンポーネント）
+            //   > Column
+            // https://developer.android.com/develop/ui/compose/layouts/basics#standard-layouts
+            Column(
                 modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 32.dp)
+                    .padding(16.dp, 32.dp)
+                    .fillMaxWidth()
                     .background(Color.LightGray)
                     .padding(8.dp)
-                    .background(Color.White)
-                    .padding(8.dp)
-            )
+            ) {
+
+                Text(
+                    "Hello Android!",
+                    color = Color.Red,
+                    modifier = Modifier
+                        .background(Color.White)
+                        .padding(8.dp)
+                )
+            }
         }
     }
 }
