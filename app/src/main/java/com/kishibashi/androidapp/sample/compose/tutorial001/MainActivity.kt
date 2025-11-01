@@ -7,9 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,34 +28,41 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            // Standard layout components（標準レイアウトコンポーネント）
-            //   > Column
-            // https://developer.android.com/develop/ui/compose/layouts/basics#standard-layouts
-            Column(
-                modifier = Modifier
-                    .padding(16.dp, 32.dp)
-                    .fillMaxWidth()
-                    .background(Color.LightGray)
-                    .padding(8.dp)
-            ) {
+            // Scaffold（土台）
+            // - edge-to-edgeと連携し、適切なinnerPaddingを提供する。
+            // - topBar, bottomBar, floatingActionButtonなどの標準的なUIを構築するAPIを提供する。
+            // https://developer.android.com/develop/ui/compose/components/scaffold
+            Scaffold(
+                modifier = Modifier.fillMaxSize()
+            ) { innerPadding ->
 
-                Text(
-                    "Hello Android!",
-                    color = Color.Red,
+                Column(
                     modifier = Modifier
-                        .background(Color.White)
+                        .padding(innerPadding)
+                        //.padding(16.dp, 32.dp)
+                        .fillMaxWidth()
+                        .background(Color.LightGray)
                         .padding(8.dp)
-                )
+                ) {
 
-                Spacer(Modifier.height(20.dp))
+                    Text(
+                        "Hello Android!",
+                        color = Color.Red,
+                        modifier = Modifier
+                            .background(Color.White)
+                            .padding(8.dp)
+                    )
 
-                Text(
-                    "Jetpack Compose",
-                    color = Color.Red,
-                    modifier = Modifier
-                        .background(Color.White)
-                        .padding(8.dp)
-                )
+                    Spacer(Modifier.height(20.dp))
+
+                    Text(
+                        "Jetpack Compose",
+                        color = Color.Red,
+                        modifier = Modifier
+                            .background(Color.White)
+                            .padding(8.dp)
+                    )
+                }
             }
         }
     }
