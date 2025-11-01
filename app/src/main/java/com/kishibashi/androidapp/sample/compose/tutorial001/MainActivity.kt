@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
@@ -37,6 +39,16 @@ class MainActivity : ComponentActivity() {
 
                 Text(
                     "Hello Android!",
+                    color = Color.Red,
+                    modifier = Modifier
+                        .background(Color.White)
+                        .padding(8.dp)
+                )
+
+                Spacer(Modifier.height(20.dp))
+
+                Text(
+                    "Jetpack Compose",
                     color = Color.Red,
                     modifier = Modifier
                         .background(Color.White)
