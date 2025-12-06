@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.kishibashi.androidapp.sample.compose.tutorial001.ui.TaskListScreen
 import com.kishibashi.androidapp.sample.compose.tutorial001.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
             // Theme
             // https://developer.android.com/develop/ui/compose/designsystems/material3#material-theming
             AppTheme {
-                MainScreen()
+                TaskListScreen()
             }
         }
     }
