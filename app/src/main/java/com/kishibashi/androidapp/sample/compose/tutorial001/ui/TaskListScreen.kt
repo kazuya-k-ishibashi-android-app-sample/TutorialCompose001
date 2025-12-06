@@ -17,12 +17,18 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun TaskListScreen(viewModel: TaskListViewModel) {
+
+    val taskTitleInput = viewModel.taskTitleInput
+
+    val taskList by viewModel.taskList.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
@@ -42,7 +48,7 @@ fun TaskListScreen(viewModel: TaskListViewModel) {
                     .weight(1f)
             ) {
 
-                items(viewModel.taskList) { task ->
+                items(taskList) { task ->
                     Text(
                         text = task.title,
                         style = MaterialTheme.typography.bodyLarge,
@@ -61,7 +67,7 @@ fun TaskListScreen(viewModel: TaskListViewModel) {
             ) {
 
                 TextField(
-                    value = viewModel.taskTitleInput,
+                    value = taskTitleInput,
                     onValueChange = { viewModel.updateTaskTitleInput(it) },
                     modifier = Modifier.weight(1f),
                     placeholder = { Text("新しいタスク") }
