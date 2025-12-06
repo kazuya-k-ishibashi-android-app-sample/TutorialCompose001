@@ -17,36 +17,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import java.time.Instant
 
 @Composable
-fun TaskListScreen() {
-
-    var taskList by remember { mutableStateOf(listOf<Task>()) }
-
-    var taskTitleInput by remember { mutableStateOf("") }
-
-    fun addTask() {
-        if (taskTitleInput.isNotBlank()) {
-            val timestamp = Instant.now()
-            val newTask = Task(
-                id = timestamp.toEpochMilli().toString(),
-                title = taskTitleInput,
-                createdAt = timestamp
-            )
-
-            taskList = taskList + newTask
-
-            taskTitleInput = ""
-        }
-    }
+fun TaskListScreen(viewModel: TaskListViewModel) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
@@ -66,7 +42,7 @@ fun TaskListScreen() {
                     .weight(1f)
             ) {
 
-                items(taskList) { task ->
+                items(viewModel.taskList) { task ->
                     Text(
                         text = task.title,
                         style = MaterialTheme.typography.bodyLarge,
@@ -85,14 +61,14 @@ fun TaskListScreen() {
             ) {
 
                 TextField(
-                    value = taskTitleInput,
-                    onValueChange = { taskTitleInput = it },
+                    value = viewModel.taskTitleInput,
+                    onValueChange = { viewModel.updateTaskTitleInput(it) },
                     modifier = Modifier.weight(1f),
                     placeholder = { Text("新しいタスク") }
                 )
 
                 Button(
-                    onClick = { addTask() },
+                    onClick = { viewModel.addTask() },
                     shape = RoundedCornerShape(12.dp),
                     modifier = Modifier.fillMaxHeight()
                 ) {
